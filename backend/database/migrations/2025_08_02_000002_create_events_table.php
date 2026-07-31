@@ -1,0 +1,2 @@
+<?php
+use Illuminate\Database\Migrations\Migration; use Illuminate\Database\Schema\Blueprint; use Illuminate\Support\Facades\Schema; return new class extends Migration { public function up(){Schema::create('events',function(Blueprint $t){$t->id();$t->string('title');$t->date('date');$t->string('venue')->nullable();$t->text('desc')->nullable();$t->timestamps();});} public function down(){Schema::dropIfExists('events');} };

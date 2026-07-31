@@ -1,0 +1,7 @@
+.DS_Store
+backend-bk/
+
+# frontend (Vite/React admin dashboard - not currently deployed)
+frontend/node_modules/
+frontend/.env
+frontend/dist/

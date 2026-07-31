@@ -1,0 +1,2 @@
+<?php
+use Illuminate\Database\Migrations\Migration; use Illuminate\Database\Schema\Blueprint; use Illuminate\Support\Facades\Schema; return new class extends Migration { public function up(){Schema::create('notices',function(Blueprint $t){$t->id();$t->string('title');$t->text('body');$t->date('date');$t->boolean('pinned')->default(false);$t->timestamps();});} public function down(){Schema::dropIfExists('notices');} };
