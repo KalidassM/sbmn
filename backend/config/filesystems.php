@@ -17,6 +17,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Uploads Disk
+    |--------------------------------------------------------------------------
+    |
+    | Which disk committee-member photo uploads are stored on. Defaults to
+    | the local "public" disk for local development. In production on a
+    | host with an ephemeral filesystem (e.g. Railway), set UPLOADS_DISK=s3
+    | and configure the S3-compatible disk below (e.g. Cloudflare R2) so
+    | uploaded photos survive redeploys.
+    |
+    */
+
+    'uploads_disk' => env('UPLOADS_DISK', 'public'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |
