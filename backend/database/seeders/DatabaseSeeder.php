@@ -25,6 +25,19 @@ class DatabaseSeeder extends Seeder
             User::factory()->make(['name' => 'Test User'])->toArray() + ['password' => bcrypt('password')]
         );
 
+        // The real committee login used by site/index.html's "Committee Login" button.
+        // firstOrCreate keeps this safe to run on every deploy (NIXPACKS_BUILD_CMD).
+        User::firstOrCreate(
+            ['email' => 'committee@sbmn.local'],
+            ['name' => 'Committee', 'password' => 'sbmn@2026']
+        );
+
+        // Demo notices/events/committee-members are only useful for local development -
+        // skip them in production so real visitors don't see placeholder content.
+        if (app()->environment('production')) {
+            return;
+        }
+
         if (Notice::count() === 0) {
             Notice::create(['title' => 'Annual General Body Meeting', 'body' => 'All member households are invited to the AGM at the Community Hall. Agenda includes budget review and committee elections.', 'date' => now()->toDateString(), 'pinned' => true]);
             Notice::create(['title' => 'Street light repair completed', 'body' => 'Faulty street lights on 4th Cross have been repaired by the municipal team following our request.', 'date' => now()->subDays(3)->toDateString(), 'pinned' => false]);
