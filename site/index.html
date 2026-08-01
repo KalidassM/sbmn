@@ -879,8 +879,9 @@ async function renderNotices(){
     const removeBtn = card.querySelector('.remove-btn');
     if(removeBtn){
       removeBtn.addEventListener('click', async () => {
-        await apiDelete(`notices/${n.id}`);
-        renderNotices();
+        try{ await apiDelete(`notices/${n.id}`); }
+        catch(err){ console.error('Delete notice request errored (may have still succeeded server-side)', err); }
+        finally{ renderNotices(); }
       });
     }
     list.appendChild(card);
@@ -958,8 +959,9 @@ async function renderEvents(){
     const removeBtn = card.querySelector('.remove-btn');
     if(removeBtn){
       removeBtn.addEventListener('click', async () => {
-        await apiDelete(`events/${ev.id}`);
-        renderEvents();
+        try{ await apiDelete(`events/${ev.id}`); }
+        catch(err){ console.error('Delete event request errored (may have still succeeded server-side)', err); }
+        finally{ renderEvents(); }
       });
     }
     list.appendChild(card);
@@ -1033,8 +1035,9 @@ async function renderCommittee(){
     const removeBtn = card.querySelector('.remove-x');
     if(removeBtn){
       removeBtn.addEventListener('click', async () => {
-        await apiDelete(`committee-members/${m.id}`);
-        renderCommittee();
+        try{ await apiDelete(`committee-members/${m.id}`); }
+        catch(err){ console.error('Delete member request errored (may have still succeeded server-side)', err); }
+        finally{ renderCommittee(); }
       });
     }
     const editBtn = card.querySelector('.edit-btn');
